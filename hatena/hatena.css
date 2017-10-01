@@ -1,0 +1,1879 @@
+/*
+Theme Name: stripe
+Theme URI: http://blog.hatena.ne.jp/-/store/theme/10328749687193663275
+Description: *概要紺色ストライプを基調としたシンプルなレスポンシブデザインテーマです。2カラム。<strong>レスポンシブデザインを有効にするには、ダッシュボード＞デザイン＞スマートフォン＞詳細設定の レスポンシブデザインにチェックを入れて下さい。</strong>サンプルブログ：[http://blog-custom.hatenadiary.jp/entry/2016/11/08/051740:title]*スタイル指定済みナビゲーションメニュー、見出し、ページャ、シェアボタン、「読者になる」ボタン、Topへ戻るボタン、パンくずリスト、「コメントを書く」ボタン、「続きを読む」ボタン、PRE（ソースコード用）これらのデザインはスタイル指定済みです。ナビゲーション、各種ボタンはHTMLをデザイン＞カスタマイズで追加するだけで設置できます。*ピンクにカスタマイズピンクでまとめたカスタマイズ用コードを用意しました。[f:id:syofuso:20161110031659j:plain]こちらの記事をどうぞ。http://design.syofuso.com/entry/2016/11/10/031911:title]*ナビゲーションメニューの設置以下のコードをデザイン＞カスタマイズ＞ヘッダ＞タイトル下へ追記。（リンク１~３、サブメニュー１~３、URLは各自変更してください）>|html|<ul id="nav-menu"><li><a href="#">リンク1</a></li><li><a href="#">リンク2</a></li><li><a href="#">リンク3</a></li><!-- 端末ごとに表示する項目を調整 --><li class="nav-menu-hidden-phone"><a href="#">スマートフォンで非表示</a></li><!-- 右端の残りのドロップダウンメニュー --><li class="hover-click"><a href="#"><i class="blogicon-reorder"></i>More</a>   <ul>   <li><a href="#">サブメニュー1</a></li>   <li><a href="#">サブメニュー2</a></li>   <li><a href="#">サブメニュー3</a></li>   </ul></li></ul><!--jQueryを使用--><script src="http://code.jquery.com/jquery-1.9.1.min.js" type="text/javascript"></script><script>$(function() {  var contents = $(".hover-click > ul");  $(".hover-click > a").click(function(){    $(contents).toggle();    return false;  });  $(".hover-click")  .mouseover(function(){    $(contents).show();  })  .mouseout(function(){    $(contents).hide();  });});</script>||<このナビゲーションメニューについては次の記事を参考にして下さい。[http://design.syofuso.com/entry/2016/10/26/152537:title]*「Topへ戻る」ボタンダッシュボード＞デザイン＞カスタマイズ＞フッタに以下のコードを追加>|html|<p class="pagetop"><a href="#"><i class="blogicon-chevron-up"></i></a></p><script type="text/javascript">    $(document).ready(function() {	var pagetop = $('.pagetop');	$(window).scroll(function () {		if ($(this).scrollTop() > 700) {			pagetop.fadeIn();		} else {			pagetop.fadeOut();		}	});	pagetop.click(function () {		$('body, html').animate({ scrollTop: 0 }, 500);		return false;	});});</script>||<*真ん中寄せ（センタリング）タイトル下やフッターに画像やバナーを真ん中寄せに配置するときは>|html|<div class="center"></div>||<で囲んで下さい。*問い合わせ質問、不具合、カスタマイズについては↓のブログまで。[http://design.syofuso.com/:title]*更新情報2016/11/12　サイドバーに広告を貼る場合を考慮して、サイドバーと、メイン記事幅のpaddingを変更しました。サイドバーには300px幅の広告を貼ることが出来ます。2016/11/13 .pager( 次へのボタン）のスタイルを変更しました。
+Author: syofuso
+Author URI: http://blog.hatena.ne.jp/syofuso/
+*/
+@charset "utf-8";
+/*
+  Theme: Stripe
+  Theme URI:http://blog-custom.hatenadiary.jp/
+  Author: syofuso
+  Author URI: http://design.syofuso.com/
+  Description:
+  シンプルなレスポンシブデザインテーマです。2カラム。
+  License: GNU General Public License v3 or later
+  License URI: https://www.gnu.org/licenses/gpl-3.0.ja.html
+  Responsive: yes
+*/
+
+html {
+	font-family: sans-serif;
+	/* 1 */
+
+	-ms-text-size-adjust: 100%;
+	-webkit-text-size-adjust: 100%;
+	/* 2 */
+}
+/**
+ * Remove default margin.
+ */
+
+body {
+	margin: 0;
+}
+/* HTML5 display definitions
+   ========================================================================== */
+/**
+ * Correct `block` display not defined for any HTML5 element in IE 8/9.
+ * Correct `block` display not defined for `details` or `summary` in IE 10/11 and Firefox.
+ * Correct `block` display not defined for `main` in IE 11.
+ */
+
+article, aside, details, figcaption, figure, footer, header, hgroup, main, nav, section, summary {
+	display: block;
+}
+/**
+ * 1. Correct `inline-block` display not defined in IE 8/9.
+ * 2. Normalize vertical alignment of `progress` in Chrome, Firefox, and Opera.
+ */
+
+audio, canvas, progress, video {
+	display: inline-block;
+	/* 1 */
+
+	vertical-align: baseline;
+	/* 2 */
+}
+/**
+ * Prevent modern browsers from displaying `audio` without controls.
+ * Remove excess height in iOS 5 devices.
+ */
+
+audio:not([controls]) {
+	display: none;
+	height: 0;
+}
+/**
+ * Address `[hidden]` styling not present in IE 8/9/10.
+ * Hide the `template` element in IE 8/9/11, Safari, and Firefox < 22.
+ */
+
+[hidden], template {
+	display: none;
+}
+/* Links
+   ========================================================================== */
+/**
+ * Remove the gray background color from active links in IE 10.
+ */
+
+a {
+	background: transparent;
+}
+/**
+ * Improve readability when focused and also mouse hovered in all browsers.
+ */
+
+a:active, a:hover {
+	outline: 0;
+}
+/* Text-level semantics
+   ========================================================================== */
+/**
+ * Address styling not present in IE 8/9/10/11, Safari, and Chrome.
+ */
+
+abbr[title] {
+	border-bottom: 1px dotted;
+}
+/**
+ * Address style set to `bolder` in Firefox 4+, Safari, and Chrome.
+ */
+
+b, strong {
+	font-weight: bold;
+}
+/**
+ * Address styling not present in Safari and Chrome.
+ */
+
+dfn {
+	font-style: italic;
+}
+/**
+ * Address variable `h1` font-size and margin within `section` and `article`
+ * contexts in Firefox 4+, Safari, and Chrome.
+ */
+
+h1 {
+	font-size: 2em;
+	margin: 0.67em 0;
+}
+/**
+ * Address styling not present in IE 8/9.
+ */
+
+mark {
+	background: #ff0;
+	color: #000;
+}
+/**
+ * Address inconsistent and variable font size in all browsers.
+ */
+
+small {
+	font-size: 80%;
+}
+/**
+ * Prevent `sub` and `sup` affecting `line-height` in all browsers.
+ */
+
+sub, sup {
+	font-size: 75%;
+	line-height: 0;
+	position: relative;
+	vertical-align: baseline;
+}
+sup {
+	top: -0.5em;
+}
+sub {
+	bottom: -0.25em;
+}
+/* Embedded content
+   ========================================================================== */
+/**
+ * Remove border when inside `a` element in IE 8/9/10.
+ */
+
+img {
+	border: 0;
+	max-width: 100%;
+	height: auto;
+}
+/**
+ * Correct overflow not hidden in IE 9/10/11.
+ */
+
+svg:not(:root) {
+	overflow: hidden;
+}
+/* Grouping content
+   ========================================================================== */
+/**
+ * Address margin not present in IE 8/9 and Safari.
+ */
+
+figure {
+	margin: 1em 40px;
+}
+/**
+ * Address differences between Firefox and other browsers.
+ */
+
+hr {
+	-moz-box-sizing: content-box;
+	box-sizing: content-box;
+	height: 0;
+}
+/**
+ * Contain overflow in all browsers.
+ */
+
+pre {
+	overflow: auto;
+}
+/**
+ * Address odd `em`-unit font size rendering in all browsers.
+ */
+
+code, kbd, pre, samp {
+	font-family: monospace, monospace;
+	font-size: 1em;
+}
+/* Forms
+   ========================================================================== */
+/**
+ * Known limitation: by default, Chrome and Safari on OS X allow very limited
+ * styling of `select`, unless a `border` property is set.
+ */
+/**
+ * 1. Correct color not being inherited.
+ *    Known issue: affects color of disabled elements.
+ * 2. Correct font properties not being inherited.
+ * 3. Address margins set differently in Firefox 4+, Safari, and Chrome.
+ */
+
+button, input, optgroup, select, textarea {
+	color: inherit;
+	/* 1 */
+
+	font: inherit;
+	/* 2 */
+
+	margin: 0;
+	/* 3 */
+}
+/**
+ * Address `overflow` set to `hidden` in IE 8/9/10/11.
+ */
+
+button {
+	overflow: visible;
+}
+/**
+ * Address inconsistent `text-transform` inheritance for `button` and `select`.
+ * All other form control elements do not inherit `text-transform` values.
+ * Correct `button` style inheritance in Firefox, IE 8/9/10/11, and Opera.
+ * Correct `select` style inheritance in Firefox.
+ */
+
+button, select {
+	text-transform: none;
+}
+/**
+ * 1. Avoid the WebKit bug in Android 4.0.* where (2) destroys native `audio`
+ *    and `video` controls.
+ * 2. Correct inability to style clickable `input` types in iOS.
+ * 3. Improve usability and consistency of cursor style between image-type
+ *    `input` and others.
+ */
+
+button, html input[type="button"], input[type="reset"], input[type="submit"] {
+	-webkit-appearance: button;
+	/* 2 */
+
+	cursor: pointer;
+	/* 3 */
+}
+/**
+ * Re-set default cursor for disabled elements.
+ */
+
+button[disabled], html input[disabled] {
+	cursor: default;
+}
+/**
+ * Remove inner padding and border in Firefox 4+.
+ */
+
+button::-moz-focus-inner, input::-moz-focus-inner {
+	border: 0;
+	padding: 0;
+}
+/**
+ * Address Firefox 4+ setting `line-height` on `input` using `!important` in
+ * the UA stylesheet.
+ */
+
+input {
+	line-height: normal;
+}
+/**
+ * It's recommended that you don't attempt to style these elements.
+ * Firefox's implementation doesn't respect box-sizing, padding, or width.
+ *
+ * 1. Address box sizing set to `content-box` in IE 8/9/10.
+ * 2. Remove excess padding in IE 8/9/10.
+ */
+
+input[type="checkbox"], input[type="radio"] {
+	box-sizing: border-box;
+	/* 1 */
+
+	padding: 0;
+	/* 2 */
+}
+/**
+ * Fix the cursor style for Chrome's increment/decrement buttons. For certain
+ * `font-size` values of the `input`, it causes the cursor style of the
+ * decrement button to change from `default` to `text`.
+ */
+
+input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-outer-spin-button {
+	height: auto;
+}
+/**
+ * 1. Address `appearance` set to `searchfield` in Safari and Chrome.
+ * 2. Address `box-sizing` set to `border-box` in Safari and Chrome
+ *    (include `-moz` to future-proof).
+ */
+
+input[type="search"] {
+	-webkit-appearance: textfield;
+	/* 1 */
+
+	-moz-box-sizing: content-box;
+	-webkit-box-sizing: content-box;
+	/* 2 */
+
+	box-sizing: content-box;
+}
+/**
+ * Remove inner padding and search cancel button in Safari and Chrome on OS X.
+ * Safari (but not Chrome) clips the cancel button when the search input has
+ * padding (and `textfield` appearance).
+ */
+
+input[type="search"]::-webkit-search-cancel-button, input[type="search"]::-webkit-search-decoration {
+	-webkit-appearance: none;
+}
+/**
+ * Define consistent border, margin, and padding.
+ */
+
+fieldset {
+	border: 1px solid #c0c0c0;
+	margin: 0 2px;
+	padding: 0.35em 0.625em 0.75em;
+}
+/**
+ * 1. Correct `color` not being inherited in IE 8/9/10/11.
+ * 2. Remove padding so people aren't caught out if they zero out fieldsets.
+ */
+
+legend {
+	border: 0;
+	/* 1 */
+
+	padding: 0;
+	/* 2 */
+}
+/**
+ * Remove default vertical scrollbar in IE 8/9/10/11.
+ */
+
+textarea {
+	overflow: auto;
+}
+/**
+ * Don't inherit the `font-weight` (applied by a rule above).
+ * NOTE: the default cannot safely be changed in Chrome and Safari on OS X.
+ */
+
+optgroup {
+	font-weight: bold;
+}
+/* Tables
+   ========================================================================== */
+/**
+ * Remove most spacing between table cells.
+ */
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+td, th {
+	padding: 0;
+}
+/*  import mixin */
+
+.clearfix {
+	display: block;
+	*zoom: 1;
+}
+.clearfix:after {
+	display: block;
+	visibility: hidden;
+	font-size: 0;
+	height: 0;
+	clear: both;
+	content: ".";
+}
+.inline-block {
+	display: inline-block;
+	*display: inline;
+	*zoom: 1;
+}
+.ellipsis {
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+/*  import variable */
+/* Common */
+
+html, body {
+	font-family: 'Helvetica Neue', 'Helvetica', 'Arial', 'Hiragino Kaku Gothic Pro', 'Meiryo', 'MS PGothic', sans-serif;
+	color: #454545;
+	background-color: #ffffff;
+}
+/* リンク文字の色 */
+
+a {
+	color: #89C3EB;
+	/* アクセントカラー */
+}
+a:hover {
+	color: #8AEAEA;
+	/* ライトカラー */
+	text-decoration: none;
+}
+a:visited {
+	color: #789DAE;
+}
+.entry-content a {
+    color: #0693cd;
+}
+.entry-content a:hover {
+    text-decoration: none;
+    opacity: 0.6;
+}
+h1 a, h2 a, h3 a, h4 a, h5 a, h6 a, h1 a:hover, h2 a:hover, h3 a:hover, h4 a:hover, h5 a:hover, h6 a:hover, h1 a:visited, h2 a:visited, h3 a:visited, h4 a:visited, h5 a:visited, h6 a:visited {
+	color: #001E43;
+	text-decoration: none;
+}
+a.keyword {
+	text-decoration: none;
+	border-bottom: 1px dotted #dddddd;
+	color: #454545;
+}
+/* Buttons */
+
+.btn {
+	display: inline-block;
+	*display: inline;
+	*zoom: 1;
+	padding: 4px 10px 4px;
+	margin-bottom: 0;
+	line-height: 18px;
+	color: #65513f;
+	background-color: #ffffff;
+	text-align: center;
+	vertical-align: middle;
+	border-top-right-radius: 2px;
+	border-bottom-right-radius: 0;
+	border-bottom-left-radius: 0;
+	border-top-left-radius: 0;
+	border-radius: 2px;
+	background-clip: padding-box;
+	cursor: pointer;
+	font-size: 12px;
+	text-decoration: none;
+	font-weight: bold;
+	border: 1px solid rgba(0, 0, 0, 0.2);
+	text-decoration: none !important;
+}
+.btn:hover {
+	background-color: #f5f5f5;
+	text-decoration: none !important;
+}
+.btn-small {
+	padding: 2px 10px !important;
+	font-size: 11px !important;
+}
+.btn-large {
+	padding: 13px 19px;
+	font-size: 17px;
+	line-height: normal;
+	font-weight: bold;
+}
+/* ヘッダ（グローバルヘッダ）
+  グローバルヘッダの中はiframeですが、
+  #globalheader-container に背景色や文字色を指定することでirameの中にも色が反映されます。
+*/
+
+#globalheader-container {
+	background-color: transparent;
+	color: #454545;
+	top: 0;
+	left: 0;
+	width: 100%;
+}
+/* container */
+
+#container {
+	width: auto;
+	padding: 10px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 0;
+}
+#container #content {
+	width: 1000px;
+	margin-left: auto;
+	margin-right: auto;
+	padding-top: 40px;
+	display: block;
+	*zoom: 1;
+	background: #fff;
+}
+#container #content:after {
+	display: block;
+	visibility: hidden;
+	font-size: 0;
+	height: 0;
+	clear: both;
+	content: ".";
+}
+.globalheader-off #container {
+	padding-top: 0;
+}
+/* 2カラムレイアウト */
+
+#main {
+	width: 640px;
+	float: left;
+	word-wrap: break-word;
+	margin-bottom: 30px;
+}
+#box2 {
+	width: 360px;
+	float: right;
+	word-wrap: break-word;
+}
+/* 1カラムにしたい場合は下記のコメントアウトを外してください ----
+#main {
+    width: 100%;
+    float: none;
+}
+#box2 {
+    width: 100%;
+    float: none;
+}
+#box2-inner {
+    width: 960px;
+    .clearfix;
+    overflow: hidden;
+}
+.hatena-module {
+    text-align: left;
+    padding-right: 20px;
+    width: 300px;
+    float: left;
+    &:nth-child(3n+1) {
+        clear: both;
+    }
+}
+---- END 1カラム */
+/* header */
+
+#blog-title {
+	margin: 0 auto;
+	/*背景に合わせるときは100px*/
+
+	padding: 50px 0;
+}
+#blog-title-inner {
+	margin: 0 auto;
+	padding: 0;
+	max-width: 1000px;
+}
+#title {
+	margin: 0;
+	text-align: center;
+}
+#title a {
+	color: #001E43;
+}
+#title a:hover {
+	opacity: 0.7;
+}
+#blog-description {
+	color: #001E43;
+	text-align: center;
+	font-weight: normal;
+	font-size: 80%;
+	margin: 5px 0 0 0;
+}
+/* ヘッダ画像を設定したとき */
+
+.header-image-enable #title {
+	padding-top: 70px;
+}
+.header-image-enable #title, .header-image-enable #blog-description {
+	margin-left: auto;
+	margin-right: auto;
+}
+/* Header-Image */
+
+.header-image-enable #blog-title #title a {
+	color: #fff;
+}
+.header-image-enable #blog-title #blog-description {
+	color: #fff;
+	font-weight: normal;
+}
+/* パンくず（カテゴリーページで表示されます） */
+
+#top-box {
+	width: 1000px;
+	margin: 0 auto;
+	font-size: 90%;
+	background: #fff;
+}
+.breadcrumb {
+	width: 1000px;
+	margin: 0 auto;
+	padding: 20px 0 0 40px;
+	text-align: left;
+	text-decoration: none;
+}
+.breadcrumb a {
+	text-decoration: none;
+}
+.page-entry .breadcrumb {
+	margin-bottom: 0;
+	padding: 20px 0 0 40px;
+}
+a.breadcrumb-link:before {
+	font-family: "blogicon";
+	content: "\f017";
+}
+a.breadcrumb-child-link:before {
+	font-family: "blogicon";
+	content: "\f04a";
+}
+/* ナビゲーション */
+
+#nav-menu {
+	list-style-type: none;
+	height: 44px;
+	width: 100%;
+	margin: 0 auto;
+	padding: 0;
+	background: #001E43;
+}
+#nav-menu li {
+	position: relative;
+	width: 20%;
+	float: left;
+	margin: 0;
+	padding: 0;
+	text-align: center;
+}
+#nav-menu li a {
+	display: block;
+	margin: 0;
+	padding: 14px 0;
+	color: #fff;
+	font-size: 14px;
+	font-weight: bold;
+	line-height: 1;
+	text-decoration: none;
+}
+#nav-menu li:hover > a {
+	background: #C7D8ED;
+	color: #fff;
+	height: 16px;
+}
+#nav-menu li ul {
+	list-style: none;
+	position: absolute;
+	top: 100%;
+	left: 0;
+	margin: 0;
+	padding: 0;
+	z-index: 9999;
+}
+#nav-menu li ul li {
+	overflow: hidden;
+	width: 100%;
+	height: 0;
+	color: #fff;
+	-moz-transition: .2s;
+	-webkit-transition: .2s;
+	-o-transition: .2s;
+	-ms-transition: .2s;
+	transition: .2s;
+}
+#nav-menu li ul li a {
+	padding: 13px 15px;
+	background: #001E43;
+	text-align: left;
+	font-size: 12px;
+	font-weight: normal;
+}
+#nav-menu li:hover ul li {
+	overflow: visible;
+	height: 38px;
+	background: #C7D8ED;
+}
+@media (max-width: 760px) {
+	.nav-menu-hidden-phone {
+		display: none !important;
+	}
+	#nav-menu {
+		height: 60px;
+	}
+	#nav-menu li {
+		width: 25%;
+	}
+	#nav-menu li a {
+		padding: 14px 0;
+	}
+	#nav-menu li:hover > a {
+		background: #C7D8ED;
+		color: #fff;
+		height: 32px;
+	}
+	#nav-menu li:last-child ul {
+		left: -100%;
+		width: 100%;
+	}
+	#nav-menu li ul li {
+		overflow: hidden;
+		width: 200%;
+		height: 0;
+	}
+}
+@media (min-width: 761px) and (max-width: 1025px) {
+	.nav-menu-hidden-tablet {
+		display: none !important;
+	}
+}
+@media (min-width: 1026px) {
+	.nav-menu-hidden-desktop {
+		display: none !important;
+	}
+}
+/* ホバー・クリック開閉 */
+
+.hover-click {
+	position: relative;
+	width: 100%;
+	margin: 30px 0;
+}
+.hover-click > a {
+	display: block;
+	width: 100%;
+	padding: 14px 0;
+	background: #001E43;
+	color: #fff;
+	font-size: 14px;
+	text-align: center;
+	text-decoration: none;
+}
+#hover-click > ul {
+	display: none;
+	z-index: 9999;
+	position: absolute;
+	width: 100%;
+	background: #C7D8ED;
+}
+/* entry */
+
+.entry {
+	position: relative;
+	margin-bottom: 100px;
+	padding: 0 20px 0 40px;
+}
+.entry-header {
+	padding: 0 0 10px 0;
+	margin-bottom: 20px;
+	position: relative;
+}
+.entry-header::after {
+	position: absolute;
+	bottom: -4px;
+	left: 0;
+	content: '';
+	height: 4px;
+	width: 100%;
+	background: -webkit-repeating-linear-gradient( -45deg, #fff 25%, #001E43 25%, #001E43 50%, #fff 50%, #fff 75%, #001E43 75%, #001E43);
+	background: repeating-linear-gradient( -45deg, #fff 25%, #001E43 25%, #001E43 50%, #fff 50%, #fff 75%, #001E43 75%, #001E43);
+	/* 幅8px、高さ8pxで背景画像のサイズを指定 */
+
+	background-size: 8px 8px;
+}
+.entry-title {
+	margin: 0;
+	line-height: 1.3;
+	font-size: 160%;
+}
+.entry-title a:hover {
+	opacity: 0.7;
+}
+/* 日付 */
+
+.date {
+	color: #001E43;
+	font-weight: bold;
+	margin-bottom: 10px;
+}
+.date a {
+	color: #001E43;
+	text-decoration: none;
+	font-size: 90%;
+}
+.date::before {
+	font-family: "blogicon";
+	content: "\f043";
+}
+/* カテゴリ */
+
+.categories {
+	color: #001E43;
+	margin-top: 10px;
+	margin-bottom: 0;
+}
+.categories::before {
+	font-family: blogicon;
+	content: "\f04a";
+}
+.categories a {
+	margin: 0 4px 4px 0;
+	padding: 6px 10px;
+	font-size: 87.5%;
+	color: #001E43;
+	text-decoration: none;
+}
+.categories a:hover {
+	color: #001E43;
+	background: -webkit-repeating-linear-gradient(-45deg, #ddd, #ddd 2px, #fff 2px, #fff 4px);
+	background: repeating-linear-gradient(-45deg, #ddd, #ddd 2px, #fff 2px, #fff 4px);
+}
+/* 「編集する」ボタン */
+
+.entry-header-menu {
+	position: absolute;
+	bottom: 0px;
+	left: -60px;
+}
+.entry-header-menu a {
+	display: inline-block;
+	*display: inline;
+	*zoom: 1;
+	padding: 4px 10px 4px;
+	margin-bottom: 0;
+	line-height: 18px;
+	color: #454545;
+	background-color: #ffffff;
+	text-align: center;
+	vertical-align: middle;
+	border-top-right-radius: 2px;
+	border-bottom-right-radius: 0;
+	border-bottom-left-radius: 0;
+	border-top-left-radius: 0;
+	border-radius: 2px;
+	background-clip: padding-box;
+	cursor: pointer;
+	font-size: 12px;
+	text-decoration: none;
+	font-weight: bold;
+	border: 1px solid rgba(0, 0, 0, 0.2);
+	text-decoration: none !important;
+}
+.entry-header-menu a:hover {
+	background-color: #f5f5f5;
+	text-decoration: none !important;
+}
+/* entry-content の中の書式 */
+
+.entry-content {
+	font-size: 100%;
+	line-height: 1.9;
+	padding-bottom: 10px;
+	border-bottom: 1px solid #dddddd;
+}
+.entry-content p {
+	margin: 0 0 1em 0;
+}
+.entry-content img {
+	max-width: 100%;
+	height: auto;
+}
+.entry-content img:hover {
+	box-shadow: 0 4px 8px 2px rgba(0, 0, 0, 0.2);
+	-webkit-transition: all 0.3s;
+	transition: all 0.3s;
+}
+.entry-content h1, .entry-content h2, .entry-content h3, .entry-content h4, .entry-content h5, .entry-content h6 {
+	margin: 1.3em 0 0.8em 0;
+	line-height: 1.5;
+	color: #001E43;
+}
+.entry-content h1 {
+	font-size: 160%;
+}
+.entry-content h2 {
+	font-size: 150%;
+	padding: .5em .75em;
+	background-color: #f6f6f6;
+	border-left: 6px solid #001E43;
+}
+.entry-content h3 {
+	font-size: 140%;
+	position: relative;
+	padding-bottom: .5em;
+	padding-left: .5em
+}
+.entry-content h3::before, .entry-content h3::after {
+	position: absolute;
+	bottom: -4px;
+	left: 0px;
+	content: '';
+	height: 4px;
+}
+.entry-content h3::before {
+	z-index: 2;
+	width: 25%;
+	background-color: #001E43;
+}
+.entry-content h3::after {
+	width: 100%;
+	background: #ddd;
+}
+.entry-content h4 {
+	font-size: 120%;
+	position: relative;
+	padding: 0 .5em .5em 2em;
+	border-bottom: 2px solid #001E43;
+}
+.entry-content h4::before, .entry-content h4::after {
+	position: absolute;
+	content: '';
+	border-radius: 100%
+}
+.entry-content h4::before {
+	top: .2em;
+	left: .2em;
+	z-index: 2;
+	width: 18px;
+	height: 18px;
+	background: #001E43;
+}
+.entry-content h4::after {
+	top: .7em;
+	left: .7em;
+	width: 13px;
+	height: 13px;
+	background: #82A2C9;
+}
+.entry-content h5 {
+	font-size: 110%;
+}
+.entry-content h6 {
+	font-size: 100%;
+}
+.entry-content table {
+	border-collapse: collapse;
+	border-spacing: 0;
+	margin-bottom: 1em;
+}
+.entry-content table img {
+	max-width: none;
+}
+.entry-content table th, .entry-content table td {
+	border: 1px solid #ddd;
+	padding: 5px 10px;
+}
+.entry-content table th {
+	background: #f5f5f5;
+}
+.entry-content blockquote {
+	border: 1px solid #dddddd;
+	margin: 0 0 10px;
+	padding: 20px;
+}
+.entry-content blockquote p {
+	margin-top: 0;
+	margin-bottom: 0;
+}
+.entry-content pre {
+	border: 1px solid #dddddd;
+	margin: 0 0 10px;
+	padding: 20px;
+	white-space: pre;
+	background-color: #1f3d54;
+	color: #eee;
+}
+.entry-content pre > code {
+	margin: 0;
+	padding: 0;
+	white-space: pre;
+	border: 0;
+	background: #1f3d54;
+	background-color: #f7f7f7;
+	color: #333;
+	font-family: 'Monaco', 'Consolas', 'Courier New', Courier, monospace, sans-serif;
+}
+.entry-content code {
+	font-size: 90%;
+	margin: 0 2px;
+	padding: 0 5px;
+	border: 1px solid #eaeaea;
+	background-color: #f7f7f7;
+	color: #333;
+	border-radius: 3px;
+	font-family: 'Monaco', 'Consolas', 'Courier New', Courier, monospace, sans-serif;
+}
+.entry-content .hatena-asin-detail li {
+	line-height: 1.4;
+}
+/* entry-footer */
+
+.entry-footer {
+	margin-top: 10px;
+}
+.entry-footer-section {
+	font-size: 80%;
+	color: #999999;
+}
+.entry-footer-section a {
+	color: #999999;
+}
+.social-buttons, .entry-footer-html {
+	margin: 10px 0;
+}
+/*続きを読む*/
+
+a.entry-see-more {
+	display: inline-block;
+	width: 120px;
+	height: 40px;
+	margin: 5px 0 5px 0;
+	line-height: 40px;
+	font-size: 16px;
+	position: relative;
+	padding: .8em 4em;
+	background: #001E43;
+	border: 1px solid #001E43;
+	border-radius: 4px;
+	color: #fff;
+	text-decoration: none;
+	text-align: center;
+}
+a.entry-see-more::after {
+	position: absolute;
+	top: 3px;
+	right: 3px;
+	bottom: 3px;
+	left: 3px;
+	content: '';
+	border: 2px dashed #fff;
+	border-radius: .4em 2em .5em 3em/3em .5em 2em .5em;
+}
+a.entry-see-more:hover {
+	color: #001E43;
+	background-color: #fff;
+	border: 2px dashed #001E43;
+	border-radius: 4px;
+}
+/*目次*/
+
+.table-of-contents {
+	border: 1px solid #e4e4e4;
+	padding: 20px 10px 20px 40px;
+	list-style-type: decimal;
+	border-radius: 5px;
+	font-size: 90%;
+}
+.table-of-contents:before {
+	content: "目次";
+	font-size: 120%;
+}
+.table-of-contents li, .table-of-contents ul {
+	list-style-type: decimal;
+}
+/* コメント */
+
+.comment-box ul {
+	list-style: none;
+	margin: 0 0 15px 0;
+	padding: 0;
+	font-size: 95%;
+	line-height: 1.7;
+}
+.comment-box li {
+	padding: 10px 0 10px 60px;
+	border-bottom: 1px solid #dddddd;
+	position: relative;
+}
+.comment-box li:first-child {
+	border-top: 1px solid #dddddd;
+}
+.comment-box .read-more-comments {
+	padding-left: 0;
+}
+.comment-box .hatena-id-icon {
+	position: absolute;
+	top: 10px;
+	left: 0;
+	width: 50px !important;
+	height: 50px !important;
+	border-top-right-radius: 3px;
+	border-bottom-right-radius: 0;
+	border-bottom-left-radius: 0;
+	border-top-left-radius: 0;
+	border-radius: 3px;
+	background-clip: padding-box;
+}
+.comment-user-name {
+	margin: 0 0 10px 0;
+	font-weight: bold;
+}
+.comment-content {
+	font-size: 90%;
+	margin: 0 0 10px 0;
+	word-wrap: break-word;
+}
+.comment-content p {
+	margin: 0 0 10px 0;
+}
+.comment-metadata {
+	font-size: 80%;
+	color: #999999;
+	margin: 0;
+}
+.comment-metadata a {
+	color: #999999;
+}
+.leave-comment-title {
+	display: inline-block;
+	*display: inline;
+	*zoom: 1;
+	padding: 10px;
+	margin-bottom: 0;
+	line-height: 20px;
+	color: #001E43;
+	background-color: #fff;
+	text-align: center;
+	vertical-align: middle;
+	border-radius: 4px;
+	background-clip: padding-box;
+	cursor: pointer;
+	font-size: 14px;
+	text-decoration: none;
+	font-weight: bold;
+	border: 1px solid #001E43;
+	text-decoration: none !important;
+}
+.leave-comment-title::before {
+	font-family: "blogicon";
+	content: "\f01d";
+	padding-right: 5px;
+}
+.leave-comment-title:hover {
+	background-color: #f5f5f5;
+	text-decoration: none !important;
+}
+.leave-comment-title:hover {
+	color: #001E43;
+	opacity: 0.7;
+	text-decoration: none !important;
+}
+/* social */
+
+.sns-header, .sns-footer {
+	padding: 0;
+}
+.sns-area {
+	margin: 10px auto;
+	padding: 0;
+	overflow: hidden;
+	table-layout: fixed;
+	display: table;
+	width: 100%;
+}
+.sns-area li {
+	list-style-type: none;
+	display: table-cell;
+	vertical-align: middle;
+}
+.sns-area li:last-child {
+	margin-right: 0
+}
+.sns-link {
+	position: relative;
+	display: block;
+	color: #fff;
+	text-align: center;
+	text-decoration: none;
+	outline: none;
+	overflow: hidden;
+	height: 42px;
+	line-height: 42px;
+}
+.sns-link::after {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	z-index: 2;
+	display: block;
+	content: '';
+	width: 0;
+	height: 0;
+	background-color: rgba(255, 255, 255, .3);
+	border-radius: 50%;
+	-webkit-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+	opacity: 0;
+}
+.sns-link:hover {
+	text-decoration: none;
+}
+a.sns-link:hover {
+	color: #fff;
+}
+.sns-link:hover::after {
+	-webkit-animation: circle .75s;
+	animation: circle .75s;
+}
+@-webkit-keyframes circle {
+	50% {
+		opacity: 1;
+	}
+	100% {
+		width: 300px;
+		height: 300px;
+	}
+}
+@keyframes circle {
+	50% {
+		opacity: 1;
+	}
+	100% {
+		width: 300px;
+		height: 300px;
+	}
+}
+.sns-twitter {
+	color: #fff;
+	background: #55acee;
+}
+.sns-facebook {
+	color: #fff;
+	background: #3a5795;
+}
+.sns-bookmark {
+	color: #fff;
+	background: #00A5DE;
+}
+.sns-googleplus {
+	color: #fff;
+	background: #db4a39;
+}
+.sns-pocket {
+	color: #fff;
+	background: #EE4256;
+}
+.blogicon-twitter, .blogicon-facebook, .blogicon-bookmark, .fa fa-google-plus, .blogicon-chevron-down {
+	margin-right: 5px;
+}
+.share-text {
+	padding-left: 4px;
+}
+@media only screen and (max-width: 767px) {
+	.share-text, .sns-txt {
+		display: none;
+	}
+	.blogicon-twitter, .blogicon-facebook, .blogicon-bookmark, .fa fa-google-plus, .blogicon-chevron-down {
+		margin-right: 0;
+	}
+}
+/* 読者になるボタン */
+
+.follow-btn {
+	width: 100%;
+}
+.follow-btn a {
+	display: block;
+	height: 50px;
+	line-height: 50px;
+	width: 250px;
+	font-size: 14px;
+	text-align: center;
+	text-decoration: none;
+}
+.follow-btn a:hover {
+	color: #3D3F44;
+	background: #fff;
+	border: 2px solid #3D3F44;
+}
+.follow-btn .hatena {
+	color: #fff;
+	background: #3D3F44;
+	border: 2px solid #3D3F44;
+}
+/* sidebar */
+
+#box2 {
+	font-size: 85%;
+	line-height: 1.5;
+}
+#box2-inner {
+	padding: 0 40px 0 20px;
+}
+.hatena-module {
+	margin-bottom: 60px;
+}
+.hatena-module-title {
+	font-weight: bold;
+	margin-bottom: 15px;
+	font-size: 120%;
+	position: relative;
+	padding: .5em .5em .5em 0;
+	background: #fff;
+	color: #001E43;
+}
+
+.hatena-module-title::after {
+	position: absolute;
+	bottom: -4px;
+	left: 0;
+	content: '';
+	height: 4px;
+	width: 100%;
+	background: -webkit-repeating-linear-gradient( -45deg, #fff 25%, #001E43 25%, #001E43 50%, #fff 50%, #fff 75%, #001E43 75%, #001E43);
+	background: repeating-linear-gradient( -45deg, #fff 25%, #001E43 25%, #001E43 50%, #fff 50%, #fff 75%, #001E43 75%, #001E43);
+	background-size: 8px 8px;
+}
+.hatena-module-title a {
+	color: #001E43;
+	text-decoration: none;
+}
+.hatena-module-title a:hover {
+	text-decoration: underline;
+}
+/* Profile module */
+
+.hatena-module-profile .profile-icon {
+	float: left;
+	margin: 0 10px 10px 0;
+	border-top-right-radius: 5px;
+	border-bottom-right-radius: 0;
+	border-bottom-left-radius: 0;
+	border-top-left-radius: 0;
+	border-radius: 5px;
+	background-clip: padding-box;
+}
+.hatena-module-profile .id {
+	display: block;
+	font-weight: bold;
+	font-size: 110%;
+	margin-bottom: 5px;
+}
+.hatena-module-profile .id a {
+	text-decoration: none;
+}
+.hatena-module-profile .profile-description {
+	font-size: 90%;
+}
+.hatena-module-profile .profile-description p {
+	margin-top: 0;
+}
+.hatena-module-profile .hatena-module-title:before {
+	font-family: blogicon;
+	content: "\f016";
+	padding-right: 5px;
+}
+/* urllist module
+    リンク・最新記事・最近のコメント・月別アーカイブ・カテゴリモジュールは .hatena-urllist という共通の class が振られます
+*/
+
+.hatena-urllist {
+	list-style: none;
+	margin: 0 0 0 0;
+	padding: 0 0 0 0;
+}
+.hatena-urllist li {
+	padding: 8px 0;
+	border-bottom: 1px dashed #ddd;
+	line-height: 1.5;
+}
+.hatena-urllist li a {
+	text-decoration: none;
+}
+/* Search module */
+
+.hatena-module-search-box .search-form {
+	border: 1px solid #dddddd;
+	border-top-right-radius: 3px;
+	border-bottom-right-radius: 0;
+	border-bottom-left-radius: 0;
+	border-top-left-radius: 0;
+	border-radius: 3px;
+	background-clip: padding-box;
+	width: 100%;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	position: relative;
+}
+.hatena-module-search-box .search-module-input {
+	padding: 5px;
+	color: #454545;
+	background: none;
+	border: none;
+	outline: none;
+	height: 20px;
+	width: 90%;
+}
+.hatena-module-search-box .search-module-button {
+	width: 20px;
+	height: 20px;
+	background: transparent url(https://blog.hatena.ne.jp/images/theme/search.png) no-repeat right center;
+	border: none;
+	outline: none;
+	text-indent: -9999px;
+	position: absolute;
+	top: 5px;
+	right: 5px;
+	opacity: 0.5;
+}
+.hatena-module-search-box .search-module-button:hover {
+	opacity: 0.85;
+}
+.hatena-module-search-box .hatena-module-title:before {
+	font-family: blogicon;
+	content: "\f01a";
+	padding-right: 5px;
+}
+/* 最新記事 */
+
+.hatena-module-recent-entries .hatena-module-title:before {
+	font-family: blogicon;
+	content: "\f031";
+	padding-right: 5px;
+}
+/* サイドバーカテゴリ */
+
+.hatena-module-category .hatena-module-title:before {
+	font-family: blogicon;
+	content: "\f022";
+	padding-right: 5px;
+}
+/* リンクリスト */
+
+.hatena-module-links .hatena-module-title:before {
+	font-family: blogicon;
+	content: "\f042";
+	padding-right: 5px;
+}
+/* 月別アーカイブ */
+
+.hatena-module-archive .hatena-module-title:before {
+	font-family: blogicon;
+	content: "\f039";
+	padding-right: 5px;
+}
+/* 注目記事 */
+
+.hatena-module-entries-access-ranking .hatena-module-title:before {
+	font-family: blogicon;
+	content: "\f050";
+	padding-right: 5px;
+}
+/* 最近のコメント */
+
+.hatena-module-recent-comments .hatena-module-title:before {
+	font-family: blogicon;
+	content: "\f01d";
+	padding-right: 5px;
+}
+/* サークル */
+
+.hatena-module-circles .hatena-module-title:before {
+	font-family: blogicon;
+	content: "\f021";
+	padding-right: 5px;
+}
+/* 執筆者リスト */
+
+.hatena-module-authors-list .hatena-module-title:before {
+	font-family: blogicon;
+	content: "\f00b";
+	padding-right: 5px;
+}
+/* 関連記事 */
+
+.hatena-module-related-entries .hatena-module-title:before {
+	font-family: blogicon;
+	content: "\f00f";
+	padding-right: 5px;
+}
+/* サイドバーHTML */
+.hatena-module-html .hatena-module-title:before {
+	font-family: blogicon;
+	content: "\f02d";
+	padding-right: 5px;
+}
+/* Pager */
+
+.pager {
+	width: 580px;
+	margin-bottom: 40px;
+	position: relative;
+	display: block;
+	*zoom: 1;
+	color: #001e43;
+	padding: 0 20px 0 40px;
+}
+.pager:after {
+	display: block;
+	visibility: hidden;
+	font-size: 0;
+	height: 0;
+	clear: both;
+	content: "."
+}
+.pager a {
+	color: #001e43;
+	display: block;
+	text-decoration: none;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis
+}
+.pager .pager-next, .pager .pager-prev {
+	display: block;
+	min-height: 2em;
+    background: -webkit-repeating-linear-gradient(-45deg, #eee, #eee 5px, #fff 5px, #fff 10px);
+	background: repeating-linear-gradient(-45deg, #eee, #eee 5px, #fff 5px, #fff 10px);
+	text-decoration: none;
+	width: 40%;
+	padding: 0 2%;
+	line-height: 2em
+}
+.pager .pager-next:hover, .pager .pager-prev:hover {
+	border: 1px solid #003576;
+	color: #001e43;
+    background: #fff;
+}
+.pager .pager-prev {
+	text-align: center;
+	float: left
+}
+.pager .pager-next {
+	text-align: center;
+	float: right
+}
+/* Footer */
+
+#footer {
+	padding: 30px 0;
+	text-align: center;
+	color: #fff;
+	line-height: 1.5;
+	font-size: 80%;
+	background: #001E43;
+}
+#footer p {
+	margin: 0;
+}
+#footer a {
+	color: #fff;
+}
+/* About ページ */
+
+.page-about dt {
+	font-size: 16px;
+	font-weight: bold;
+	border-bottom: 1px solid #dfdfdf;
+	margin-bottom: 5px;
+}
+.page-about dd {
+	margin-left: 0;
+	margin-bottom: 30px;
+}
+/* archive ページ */
+
+.page-archive .archive-entries .archive-entry {
+	margin-bottom: 3em;
+	padding: 0 20px 0 40px;
+}
+.page-archive .archive-entries .entry-title {
+	font-size: 130%;
+	margin: 0 0 .5em;
+}
+.page-archive .archive-entries .categories {
+	margin: 0 0 .5em;
+}
+.page-archive .archive-entries .categories::before {
+	content: "";
+}
+.page-archive .archive-entries .entry-description {
+	margin: 0 0 1em;
+	line-height: 1.7em;
+	font-size: 95%;
+}
+.page-archive .categories a {
+	color: #fff;
+	font-size: 70%;
+	background: #001E43;
+	padding: 3px 5px;
+	border-radius: 3px;
+	text-decoration: none;
+	display: inline-block;
+	*display: inline;
+	*zoom: 1;
+	margin-right: 2px;
+}
+/*ページ上部へ戻る*/
+
+.pagetop {
+	display: none;
+	position: fixed;
+	bottom: 30px;
+	right: 55px;
+}
+.pagetop a {
+	display: block;
+	width: 50px;
+	height: 50px;
+	background-color: #001E43;
+	text-align: center;
+	color: #fff;
+	font-size: 24px;
+	text-decoration: none;
+	line-height: 50px;
+	opacity: 0.8;
+}
+.pagetop a:hover {
+	background-color: #C7D8ED;
+}
+.archive-heading {
+        color: #001E43;
+        padding: 0 40px;
+}
+/*  import media queries */
+/* Media Queries - Retina Display */
+
+@media (-webkit-min-device-pixel-ratio: 2) {
+	.hatena-module-search-box .search-module-button {
+		background: transparent url(https://blog.hatena.ne.jp/images/theme/search@2x.png) no-repeat right center;
+		background-size: 20px 20px;
+	}
+}
+/* Media Queries - Tablet */
+
+@media (min-width: 920px) and (max-width: 1150px) {
+	#container #content {
+		width: 100%;
+		max-width: 1000px;
+		margin-left: auto;
+		margin-right: auto;
+	}
+	#main {
+		width: 620px;
+	}
+	#box2 {
+		width: 300px;
+	}
+	#blog-title-inner {
+		width: 100%;
+		max-width: 1000px;
+		margin-left: auto;
+		margin-right: auto;
+	}
+	/* パンくず（カテゴリーページで表示されます） */
+
+	#top-box {
+		font-size: 90%;
+		width: 100%;
+		max-width: 1000px;
+		margin-left: auto;
+		margin-right: auto;
+	}
+	.breadcrumb {
+		width: 100%;
+		max-width: 1000px;
+		margin-left: auto;
+		margin-right: auto;
+	}
+}
+/* Media Queries - Small Tablet & Smartphone */
+
+@media (max-width: 919px) {
+	#container #content {
+		width: 100%;
+		word-wrap: break-word;
+		overflow: hidden;
+		margin-left: auto;
+		margin-right: auto;
+		padding-top: 20px
+	}
+	#blog-title-inner {
+		margin-left: auto;
+		margin-right: auto;
+	}
+	#title {
+		font-size: 140%;
+	}
+	#blog-description {
+		font-size: 70%;
+	}
+	#main {
+		width: 100%;
+		float: none;
+		border-right: none;
+		margin-bottom: 40px;
+	}
+	.entry {
+		padding: 0 20px 0 20px;
+    margin-bottom: 40px;
+	}
+	.page-archive .archive-entries .archive-entry {
+		margin-bottom: 3em;
+		padding: 0 20px 0 20px;
+	}
+	#box2 {
+		width: 100%;
+		float: none;
+	}
+	#box2-inner {
+		padding: 0 20px 0 20px;
+	}
+	#top-box {
+		width: 100%;
+		margin: 0 auto;
+	}
+	.breadcrumb {
+		width: 100%;
+		margin: 0 auto;
+		padding: 20px 0px 0 20px;
+	}
+	.page-entry .breadcrumb {
+		padding: 20px 0px 0 20px;
+	}
+    .archive-heading {
+        padding: 0 20px;
+    }
+	.hatena-module {
+		width: 100%;
+		float: none;
+	}
+	.entry-title {
+		margin: 20px 0 6px 0;
+	}
+  .pager {
+      width: 100%;
+      padding: 0 20px 0 20px;
+      margin: 0 auto;
+      box-sizing: border-box;
+  }
+  .pager .pager-prev {
+      float: none;
+      width: 100%;
+      margin: 10px 0;
+  }
+  .pager .pager-next {
+      float: none;
+      width: 100%;
+      margin: 10px 0;
+  }
+  .pager-next a, .pager-prev a {
+      width: 100%;
+      margin: 10px auto;
+      display: inline-block;
+  }
+  .pager .pager-next, .pager .pager-prev {
+      display: block;
+      min-height: 1em;
+      line-height: 1em;
+      padding: 0;
+}
+}
+/* Media Queries - Smartphone */
+
+@media (max-width: 480px) {
+	#container #content {
+		padding-top: 20px;
+		width: 100%;
+		margin-left: auto;
+		margin-right: auto;
+        overflow:hidden;
+	}
+	#title {
+		font-size: 120%;
+	}
+	#blog-title {
+		padding: 40px 0;
+	}
+	#top-box {
+		width: 100%;
+		margin: 0 auto;
+	}
+	.breadcrumb {
+		width: 90%;
+		margin: 0 auto;
+        padding: 20px 0px 0 20px;
+	}
+	.page-entry .breadcrumb {
+		padding: 20px 0 0 20px;
+	}
+	.entry-content img:hover {
+		box-shadow: 0 0;
+	}
+	.categories a {
+		display: inline-block;
+		font-size: 80%;
+		padding: 6px 5px;
+	}
+	.entry-header {
+		border-bottom: none;
+	}
+	.entry-title {
+		margin: 20px 0 6px 0;
+	}
+    .pagetop a {
+    display: block;
+    width: 30px;
+    height: 30px;
+    background-color: #001E43;
+    text-align: center;
+    color: #fff;
+    font-size: 18px;
+    text-decoration: none;
+    line-height: 30px;
+    opacity: 0.8;
+    }
+    .pagetop {
+        right: 5px;
+    }
+}
+
+body{background:#f4efe3;}
+
+/* タイトルイメージ調整 */
+#blog-title {
+    padding-top: 5px; /* 画像上部の余白*/
+    padding-bottom: 5px; /* 画像下部の余白*/
+    height: initial;
+}
+
+.hatena-module {
+    margin-bottom: 30px;
+}
+
+.header-image-enable #blog-title #blog-title-inner {
+    height: 220px;
+}
+
+ /* footer調整 */
+#footer {
+ height:40px; /* フッターの高さ */
+ padding: initial;
+ background-color: #f4efe3;
+ display: -webkit-flex;
+ display: flex;
+ -webkit-align-items: center; /* 縦方向中央揃え（Safari用） */
+ align-items: center; /* 縦方向中央揃え */
+ -webkit-justify-content: center; /* 横方向中央揃え（Safari用） */
+ justify-content: center; /* 横方向中央揃え */
+}
+
+#footer a {
+  color: #f4efe3;
+}
+
+#footer p {
+  display: none;
+}
+
+#footer .footer-address-name {
+  color: #001E43;
+}
